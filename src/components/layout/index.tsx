@@ -1,3 +1,4 @@
+import NotificationContainer from '@components/notifications/NotificationContainer'
 import Head from 'next/head'
 import React from 'react'
 import Footer from './Footer'
@@ -24,7 +25,12 @@ const Layout: React.FunctionComponent<LayoutProps> = (props: LayoutProps) => {
       </Head>
 
       <Header />
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow">
+        <div className="relative">
+          <NotificationContainer />
+          {children}
+        </div>
+      </div>
       <Footer />
     </div>
   )

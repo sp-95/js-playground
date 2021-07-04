@@ -1,0 +1,153 @@
+@layer components {
+  /**
+  * ----------------------------------------
+  * animation enter-top
+  * ----------------------------------------
+  */
+  .enter-top {
+    animation: enter-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  @keyframes enter-top {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  /**
+  * ----------------------------------------
+  * animation exit-top
+  * ----------------------------------------
+  */
+  .exit-top {
+    animation: exit-top 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  @keyframes exit-top {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+  /**
+  * ----------------------------------------
+  * animation enter-bottom
+  * ----------------------------------------
+  */
+  .enter-bottom {
+    animation: enter-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  @keyframes enter-bottom {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  /**
+  * ----------------------------------------
+  * animation exit-bottom
+  * ----------------------------------------
+  */
+  .exit-bottom {
+    animation: exit-bottom 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  @keyframes exit-bottom {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+
+  /**
+  * ----------------------------------------
+  * animation enter-right
+  * ----------------------------------------
+  */
+  .enter-right {
+    animation: enter-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  @keyframes enter-right {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /**
+  * ----------------------------------------
+  * animation exit-right
+  * ----------------------------------------
+  */
+  .exit-right {
+    animation: exit-right 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  @keyframes exit-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  /**
+  * ----------------------------------------
+  * animation enter-left
+  * ----------------------------------------
+  */
+  .enter-left {
+    animation: enter-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  @keyframes enter-left {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /**
+  * ----------------------------------------
+  * animation exit-left
+  * ----------------------------------------
+  */
+  .exit-left {
+    animation: exit-left 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  @keyframes exit-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@layer components {
+  .notification-container {
+    @apply fixed top-10 right-10;
+    @apply w-72 sm:w-80 space-y-3;
+    @apply z-40;
+  }
+
+  .notification {
+    @apply bg-white bg-opacity-40 backdrop-filter backdrop-blur-sm;
+    @apply rounded-lg;
+    @apply shadow-2xl;
+    @apply overflow-hidden;
+    @apply enter-right;
+  }
+
+  .notification-bar {
+    @apply h-2;
+  }
+
+  .notification-icon {
+    @apply h-6;
+    @apply flex-none;
+  }
+
+  .notification.success {
+    @apply text-green-800;
+
+    .notification-bar {
+      @apply bg-green-500;
+    }
+  }
+
+  .notification.danger {
+    @apply text-red-800;
+
+    .notification-bar {
+      @apply bg-red-500;
+    }
+  }
+
+  .notification.warning {
+    @apply text-yellow-800;
+
+    .notification-bar {
+      @apply bg-yellow-500;
+    }
+  }
+
+  .notification.info {
+    @apply text-blue-800;
+
+    .notification-bar {
+      @apply bg-blue-500;
+    }
+  }
+}
