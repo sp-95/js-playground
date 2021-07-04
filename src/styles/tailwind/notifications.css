@@ -23,34 +23,34 @@
   }
 
   .notification.success {
-    @apply text-green-800;
+    @apply text-success-700;
 
     .notification-bar {
-      @apply bg-green-500;
+      @apply bg-success-600;
     }
   }
 
   .notification.danger {
-    @apply text-red-800;
+    @apply text-danger-600;
 
     .notification-bar {
-      @apply bg-red-500;
+      @apply bg-danger-500;
     }
   }
 
   .notification.warning {
-    @apply text-yellow-800;
+    @apply text-warning-400;
 
     .notification-bar {
-      @apply bg-yellow-500;
+      @apply bg-warning-400;
     }
   }
 
   .notification.info {
-    @apply text-blue-800;
+    @apply text-info-400;
 
     .notification-bar {
-      @apply bg-blue-500;
+      @apply bg-info-400;
     }
   }
 }
