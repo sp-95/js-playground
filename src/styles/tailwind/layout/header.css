@@ -1,0 +1,7 @@
+@layer base {
+  header {
+    @apply sticky top-0;
+    @apply z-50;
+    @apply shadow-xl;
+  }
+}
