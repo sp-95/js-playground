@@ -10,7 +10,6 @@
     @apply rounded-lg;
     @apply shadow-2xl;
     @apply overflow-hidden;
-    @apply enter-right;
   }
 
   .notification-bar {

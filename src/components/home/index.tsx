@@ -16,6 +16,7 @@ const Home: React.FunctionComponent = () => {
       >
         Success
       </button>
+
       <button
         type="button"
         className="btn-danger"
@@ -23,6 +24,7 @@ const Home: React.FunctionComponent = () => {
       >
         Danger
       </button>
+
       <button
         type="button"
         className="btn-warning"
@@ -30,6 +32,7 @@ const Home: React.FunctionComponent = () => {
       >
         Warning
       </button>
+
       <button
         type="button"
         className="btn-info"

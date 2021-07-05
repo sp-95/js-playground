@@ -77,7 +77,9 @@ function Notification(props: INotification): React.ReactElement {
 
   return (
     <div
-      className={`notification ${type.toLowerCase()} ${exit && 'exit-right'}`}
+      className={`notification ${type.toLowerCase()} ${
+        exit ? 'exit-right' : 'enter-right'
+      }`}
       onMouseEnter={handlePauseTimer}
       onMouseLeave={handleStartTimer}
     >
