@@ -1,19 +1,21 @@
 @layer components {
   .notification-container {
-    @apply fixed top-10 right-10;
+    @apply fixed right-0;
+    @apply m-5;
     @apply w-72 sm:w-80 space-y-3;
     @apply z-40;
   }
 
   .notification {
-    --notification-autohide-delay: 4s;
-    @apply flex items-center;
-    @apply space-x-1;
-    @apply p-1;
     @apply bg-white bg-opacity-40 backdrop-filter backdrop-blur-sm;
     @apply rounded-lg;
     @apply shadow-2xl;
-    @apply overflow-hidden;
+  }
+
+  .notification-message {
+    @apply flex items-center;
+    @apply p-1;
+    @apply space-x-1;
   }
 
   .notification-icon {
@@ -21,14 +23,12 @@
     @apply flex-none;
   }
 
-  .notification__bar {
+  .notification--bar {
+    --notification-autohide-delay: 4s;
     @apply notification;
-    @apply pb-3;
-    @apply relative;
+    @apply overflow-hidden;
 
     .bar {
-      content: '';
-      @apply absolute bottom-0 -left-1;
       @apply h-2;
       animation: width var(--notification-autohide-delay) linear forwards;
 
@@ -49,23 +49,23 @@
     }
   }
 
-  .notification__bar.success {
-    @apply text-success-700;
+  .notification--bar.success {
+    @apply text-success-600;
 
     .bar {
       @apply bg-success-600;
     }
   }
 
-  .notification__bar.danger {
-    @apply text-danger-600;
+  .notification--bar.danger {
+    @apply text-danger-500;
 
     .bar {
       @apply bg-danger-500;
     }
   }
 
-  .notification__bar.warning {
+  .notification--bar.warning {
     @apply text-warning-400;
 
     .bar {
@@ -73,7 +73,7 @@
     }
   }
 
-  .notification__bar.info {
+  .notification--bar.info {
     @apply text-info-400;
 
     .bar {

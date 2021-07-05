@@ -11,6 +11,7 @@ import {
   InformationCircleIcon,
   XCircleIcon,
 } from '@heroicons/react/outline'
+import { XCircleIcon as SolidXCircleIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { v4 as uuid4 } from 'uuid'
@@ -27,7 +28,7 @@ const NotificationIcons = {
 }
 
 function Notification(props: INotification): React.ReactElement {
-  const { id, type, message, delay = 3000 } = props
+  const { id, type, message, autohide = true, delay = 3000 } = props
   const animationStyle = {
     '--notification-autohide-delay': `${delay}ms`,
   } as React.CSSProperties
@@ -38,7 +39,6 @@ function Notification(props: INotification): React.ReactElement {
 
   const handleCloseNotification = () => {
     setExit(true)
-
     setTimeout(() => {
       dispatch(removeNotification(id))
     }, 500)
@@ -47,14 +47,23 @@ function Notification(props: INotification): React.ReactElement {
   return (
     <div
       style={animationStyle}
-      className={`notification__bar ${type.toLowerCase()} ${
+      className={`notification--bar relative ${type.toLowerCase()} ${
         exit ? 'exit-right' : 'enter-right'
       }`}
     >
-      {NotificationIcons[type]}
-      <span>{message}</span>
+      <div className={`notification-message ${autohide && 'pr-5'}`}>
+        {NotificationIcons[type]}
+        <span>{message}</span>
+      </div>
 
-      <div className="bar" onAnimationEnd={handleCloseNotification} />
+      {autohide ? (
+        <div className="bar" onAnimationEnd={handleCloseNotification} />
+      ) : (
+        <SolidXCircleIcon
+          className="absolute top-0 right-0 h-5 text-danger-500 cursor-pointer"
+          onClick={handleCloseNotification}
+        />
+      )}
     </div>
   )
 }

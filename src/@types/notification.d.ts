@@ -4,6 +4,7 @@ interface INotification {
   id: string
   type: NotificationType
   message: string
+  autohide?: boolean
   delay?: number
 }
 
