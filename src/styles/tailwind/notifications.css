@@ -6,14 +6,14 @@
   }
 
   .notification {
+    --notification-autohide-delay: 4s;
+    @apply flex items-center;
+    @apply space-x-1;
+    @apply p-1;
     @apply bg-white bg-opacity-40 backdrop-filter backdrop-blur-sm;
     @apply rounded-lg;
     @apply shadow-2xl;
     @apply overflow-hidden;
-  }
-
-  .notification-bar {
-    @apply h-2;
   }
 
   .notification-icon {
@@ -21,34 +21,62 @@
     @apply flex-none;
   }
 
-  .notification.success {
+  .notification__bar {
+    @apply notification;
+    @apply pb-3;
+    @apply relative;
+
+    .bar {
+      content: '';
+      @apply absolute bottom-0 -left-1;
+      @apply h-2;
+      animation: width var(--notification-autohide-delay) linear forwards;
+
+      @keyframes width {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+    }
+
+    &:hover {
+      .bar {
+        animation-play-state: paused;
+      }
+    }
+  }
+
+  .notification__bar.success {
     @apply text-success-700;
 
-    .notification-bar {
+    .bar {
       @apply bg-success-600;
     }
   }
 
-  .notification.danger {
+  .notification__bar.danger {
     @apply text-danger-600;
 
-    .notification-bar {
+    .bar {
       @apply bg-danger-500;
     }
   }
 
-  .notification.warning {
+  .notification__bar.warning {
     @apply text-warning-400;
 
-    .notification-bar {
+    .bar {
       @apply bg-warning-400;
     }
   }
 
-  .notification.info {
+  .notification__bar.info {
     @apply text-info-400;
 
-    .notification-bar {
+    .bar {
       @apply bg-info-400;
     }
   }

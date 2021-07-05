@@ -27,67 +27,34 @@ const NotificationIcons = {
 }
 
 function Notification(props: INotification): React.ReactElement {
-  const { id, type, message } = props
+  const { id, type, message, delay = 3000 } = props
+  const animationStyle = {
+    '--notification-autohide-delay': `${delay}ms`,
+  } as React.CSSProperties
 
   const [exit, setExit] = React.useState(false)
-  const [width, setWidth] = React.useState(0)
-  const [intervalID, setIntervalID] =
-    React.useState<ReturnType<typeof setInterval>>()
 
   const dispatch = useDispatch()
 
-  const handleStartTimer = () => {
-    const newIntervalID = setInterval(() => {
-      setWidth((prev) => {
-        if (prev < 100) {
-          return prev + 0.5
-        }
-
-        return prev
-      })
-    }, 20)
-
-    setIntervalID(newIntervalID)
-  }
-
-  const handlePauseTimer = () => {
-    if (intervalID) clearInterval(intervalID)
-  }
-
   const handleCloseNotification = () => {
-    handlePauseTimer()
     setExit(true)
 
     setTimeout(() => {
       dispatch(removeNotification(id))
-    }, 400)
+    }, 500)
   }
-
-  React.useEffect(() => {
-    handleStartTimer()
-
-    return handleCloseNotification
-  }, [])
-
-  React.useEffect(() => {
-    if (width === 100) {
-      handleCloseNotification()
-    }
-  }, [width])
 
   return (
     <div
-      className={`notification ${type.toLowerCase()} ${
+      style={animationStyle}
+      className={`notification__bar ${type.toLowerCase()} ${
         exit ? 'exit-right' : 'enter-right'
       }`}
-      onMouseEnter={handlePauseTimer}
-      onMouseLeave={handleStartTimer}
     >
-      <div className="p-1 flex items-center space-x-1">
-        {NotificationIcons[type]}
-        <span className="">{message}</span>
-      </div>
-      <div style={{ width: `${width}%` }} className="notification-bar" />
+      {NotificationIcons[type]}
+      <span>{message}</span>
+
+      <div className="bar" onAnimationEnd={handleCloseNotification} />
     </div>
   )
 }
