@@ -60,7 +60,7 @@ function Notification(props: INotification): React.ReactElement {
         <div className="bar" onAnimationEnd={handleCloseNotification} />
       ) : (
         <SolidXCircleIcon
-          className="absolute top-0 right-0 h-5 text-danger-500 cursor-pointer"
+          className="notification-close-btn"
           onClick={handleCloseNotification}
         />
       )}

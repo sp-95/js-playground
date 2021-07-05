@@ -11,16 +11,20 @@
     @apply rounded-lg;
     @apply shadow-2xl;
   }
-
   .notification-message {
     @apply flex items-center;
     @apply p-1;
     @apply space-x-1;
   }
-
   .notification-icon {
     @apply h-6;
     @apply flex-none;
+  }
+  .notification-close-btn {
+    @apply absolute top-0 right-0;
+    @apply h-5;
+    @apply text-danger-500;
+    @apply cursor-pointer;
   }
 
   .notification--bar {
