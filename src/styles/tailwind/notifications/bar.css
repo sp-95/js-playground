@@ -1,0 +1,58 @@
+@layer components {
+  .notification.bar {
+    --notification-autohide-delay: 4s;
+    @apply overflow-hidden;
+
+    .notification-bar {
+      @apply h-2;
+      animation: width var(--notification-autohide-delay) linear forwards;
+
+      @keyframes width {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+    }
+
+    &:hover {
+      .notification-bar {
+        animation-play-state: paused;
+      }
+    }
+
+    &.success {
+      @apply text-success-600;
+
+      .notification-bar {
+        @apply bg-success-600;
+      }
+    }
+
+    &.danger {
+      @apply text-danger-500;
+
+      .notification-bar {
+        @apply bg-danger-500;
+      }
+    }
+
+    &.warning {
+      @apply text-warning-400;
+
+      .notification-bar {
+        @apply bg-warning-400;
+      }
+    }
+
+    &.info {
+      @apply text-info-400;
+
+      .notification-bar {
+        @apply bg-info-400;
+      }
+    }
+  }
+}

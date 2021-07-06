@@ -1,0 +1,32 @@
+@import './bar';
+
+@layer components {
+  .notification-container {
+    @apply fixed right-0;
+    @apply m-5 space-y-3;
+    @apply w-72 sm:w-80;
+    @apply z-40;
+  }
+
+  .notification {
+    @apply relative;
+    @apply bg-white bg-opacity-40;
+    @apply backdrop-filter backdrop-blur-sm;
+    @apply rounded-lg;
+    @apply shadow-2xl;
+  }
+  .notification-message {
+    @apply flex items-center;
+    @apply p-1 space-x-1;
+  }
+  .notification-icon {
+    @apply h-6;
+    @apply flex-none;
+  }
+  .notification-close-btn {
+    @apply absolute top-0 right-0;
+    @apply h-5;
+    @apply text-danger-500;
+    @apply cursor-pointer;
+  }
+}

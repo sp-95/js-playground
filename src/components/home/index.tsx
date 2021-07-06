@@ -11,7 +11,7 @@ const Home: React.FunctionComponent = () => {
     <main className="btn-container">
       <button
         type="button"
-        className="btn-success"
+        className="btn success"
         onClick={() => sendSuccessNotification('Mission Successful')}
       >
         Success
@@ -19,7 +19,7 @@ const Home: React.FunctionComponent = () => {
 
       <button
         type="button"
-        className="btn-danger"
+        className="btn danger"
         onClick={() => sendDangerNotification('Mission Failed')}
       >
         Danger
@@ -27,7 +27,7 @@ const Home: React.FunctionComponent = () => {
 
       <button
         type="button"
-        className="btn-warning"
+        className="btn warning"
         onClick={() => sendWarningNotification('WARNING!!!')}
       >
         Warning
@@ -35,7 +35,7 @@ const Home: React.FunctionComponent = () => {
 
       <button
         type="button"
-        className="btn-info"
+        className="btn info"
         onClick={() => sendInfoNotification('For your information')}
       >
         Info

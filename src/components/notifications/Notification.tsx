@@ -47,7 +47,7 @@ function Notification(props: INotification): React.ReactElement {
   return (
     <div
       style={animationStyle}
-      className={`notification--bar relative ${type.toLowerCase()} ${
+      className={`notification bar ${type.toLowerCase()} ${
         exit ? 'exit-right' : 'enter-right'
       }`}
     >
@@ -57,7 +57,10 @@ function Notification(props: INotification): React.ReactElement {
       </div>
 
       {autohide ? (
-        <div className="bar" onAnimationEnd={handleCloseNotification} />
+        <div
+          className="notification-bar"
+          onAnimationEnd={handleCloseNotification}
+        />
       ) : (
         <SolidXCircleIcon
           className="notification-close-btn"
