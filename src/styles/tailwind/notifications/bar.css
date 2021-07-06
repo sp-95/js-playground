@@ -1,21 +1,22 @@
 @layer components {
-  .notification.bar {
-    --notification-autohide-delay: 4s;
-    @apply overflow-hidden;
+  .notification-bar {
+    @apply h-2;
+    animation: width var(--notification-autohide-delay) linear forwards;
 
-    .notification-bar {
-      @apply h-2;
-      animation: width var(--notification-autohide-delay) linear forwards;
-
-      @keyframes width {
-        0% {
-          width: 0;
-        }
-        100% {
-          width: 100%;
-        }
+    @keyframes width {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
       }
     }
+  }
+
+  .notification.bar {
+    --notification-autohide-delay: 4s;
+    @apply rounded-lg;
+    @apply overflow-hidden;
 
     &:hover {
       .notification-bar {
@@ -53,6 +54,38 @@
       .notification-bar {
         @apply bg-info-400;
       }
+    }
+  }
+
+  .notification--bar.success {
+    @apply text-success-600;
+
+    .bar {
+      @apply bg-success-600;
+    }
+  }
+
+  .notification--bar.danger {
+    @apply text-danger-500;
+
+    .bar {
+      @apply bg-danger-500;
+    }
+  }
+
+  .notification--bar.warning {
+    @apply text-warning-400;
+
+    .bar {
+      @apply bg-warning-400;
+    }
+  }
+
+  .notification--bar.info {
+    @apply text-info-400;
+
+    .bar {
+      @apply bg-info-400;
     }
   }
 }

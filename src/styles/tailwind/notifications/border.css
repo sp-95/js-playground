@@ -1,0 +1,116 @@
+@layer components {
+  .notification-border {
+    @apply absolute;
+    @apply top-0 left-0;
+    @apply w-full h-full;
+
+    &:before,
+    &:after {
+      content: '';
+      @apply absolute;
+      @apply border border-transparent;
+      @apply rounded-sm;
+    }
+
+    &:before {
+      @apply top-0 left-0;
+      @apply border-2 border-current border-b-0 border-l-0;
+      animation: top-right var(--notification-autohide-delay) linear forwards;
+    }
+
+    @keyframes top-right {
+      0% {
+        @apply w-0 h-0;
+      }
+      42% {
+        @apply w-full h-0;
+      }
+      50% {
+        @apply w-full h-full;
+      }
+      100% {
+        @apply w-full h-full;
+      }
+    }
+
+    &:after {
+      @apply bottom-0 right-0;
+      @apply border-2 border-transparent border-t-0 border-r-0;
+      animation: bottom-left calc(var(--notification-autohide-delay) / 2) linear
+        forwards calc(var(--notification-autohide-delay) / 2);
+    }
+
+    @keyframes bottom-left {
+      0% {
+        @apply w-0 h-0;
+        @apply border-current;
+      }
+      84% {
+        @apply w-full h-0;
+      }
+      100% {
+        @apply w-full h-full;
+        @apply border-current;
+      }
+    }
+  }
+
+  .notification.border {
+    --notification-autohide-delay: 4s;
+    @apply relative;
+    @apply rounded-sm;
+
+    &:hover {
+      .notification-border {
+        &:before,
+        &:after {
+          animation-play-state: paused;
+        }
+      }
+    }
+
+    &.success {
+      @apply text-success-600;
+
+      &:before,
+      &:after {
+        .notification-border {
+          @apply border-success-600;
+        }
+      }
+    }
+
+    &.danger {
+      @apply text-danger-500;
+
+      &:before,
+      &:after {
+        .notification-border {
+          @apply border-danger-500;
+        }
+      }
+    }
+
+    &.warning {
+      @apply text-warning-400;
+
+      &:before,
+      &:after {
+        .notification-border {
+          @apply border-warning-400;
+        }
+      }
+    }
+
+    &.info {
+      @apply text-info-400;
+
+      &:before,
+      &:after {
+        .notification-border {
+          @apply border-info-400;
+        }
+      }
+    }
+  }
+}

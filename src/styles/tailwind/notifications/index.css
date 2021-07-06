@@ -1,4 +1,5 @@
 @import './bar';
+@import './border';
 
 @layer components {
   .notification-container {
@@ -12,7 +13,6 @@
     @apply relative;
     @apply bg-white bg-opacity-40;
     @apply backdrop-filter backdrop-blur-sm;
-    @apply rounded-lg;
     @apply shadow-2xl;
   }
   .notification-message {
