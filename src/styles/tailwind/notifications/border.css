@@ -9,12 +9,12 @@
       content: '';
       @apply absolute;
       @apply border border-transparent;
-      @apply rounded-sm;
+      @apply rounded;
     }
 
     &:before {
       @apply top-0 left-0;
-      @apply border-2 border-current border-b-0 border-l-0;
+      @apply border-4 border-current border-b-0 border-l-0;
       animation: top-right var(--notification-autohide-delay) linear forwards;
     }
 
@@ -35,7 +35,7 @@
 
     &:after {
       @apply bottom-0 right-0;
-      @apply border-2 border-transparent border-t-0 border-r-0;
+      @apply border-4 border-transparent border-t-0 border-r-0;
       animation: bottom-left calc(var(--notification-autohide-delay) / 2) linear
         forwards calc(var(--notification-autohide-delay) / 2);
     }
@@ -57,8 +57,9 @@
 
   .notification.border {
     --notification-autohide-delay: 4s;
+    @apply p-1;
     @apply relative;
-    @apply rounded-sm;
+    @apply rounded;
 
     &:hover {
       .notification-border {
