@@ -71,23 +71,23 @@
     }
 
     &.success {
-      @apply text-success-600;
+      @apply text-success-400;
 
       &:before,
       &:after {
         .notification-border {
-          @apply border-success-600;
+          @apply border-success-400;
         }
       }
     }
 
     &.danger {
-      @apply text-danger-500;
+      @apply text-danger-400;
 
       &:before,
       &:after {
         .notification-border {
-          @apply border-danger-500;
+          @apply border-danger-400;
         }
       }
     }

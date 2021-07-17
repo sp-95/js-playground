@@ -26,11 +26,13 @@
     &.warning {
       @apply bg-warning-400 hover:bg-warning-300 focus:bg-warning-300;
       @apply ring-warning-300;
+      @apply text-gray-700;
     }
 
     &.info {
       @apply bg-info-400 hover:bg-info-300 focus:bg-info-300;
       @apply ring-info-300;
+      @apply text-gray-700;
     }
   }
 }

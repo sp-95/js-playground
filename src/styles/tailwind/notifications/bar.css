@@ -25,18 +25,18 @@
     }
 
     &.success {
-      @apply text-success-600;
+      @apply text-success-400;
 
       .notification-bar {
-        @apply bg-success-600;
+        @apply bg-success-400;
       }
     }
 
     &.danger {
-      @apply text-danger-500;
+      @apply text-danger-400;
 
       .notification-bar {
-        @apply bg-danger-500;
+        @apply bg-danger-400;
       }
     }
 
@@ -58,18 +58,18 @@
   }
 
   .notification--bar.success {
-    @apply text-success-600;
+    @apply text-success-400;
 
     .bar {
-      @apply bg-success-600;
+      @apply bg-success-400;
     }
   }
 
   .notification--bar.danger {
-    @apply text-danger-500;
+    @apply text-danger-400;
 
     .bar {
-      @apply bg-danger-500;
+      @apply bg-danger-400;
     }
   }
 

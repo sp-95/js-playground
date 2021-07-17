@@ -3,3 +3,10 @@
 @import './components';
 @import './animations';
 @import './notifications';
+
+@layer base {
+  body {
+    @apply bg-blueGray-800;
+    @apply text-white;
+  }
+}
