@@ -15,13 +15,16 @@ function PuzzleButton({
   let status
   let value
   if (state > 0) {
-    status = 'success'
+    if (index % 2) status = 'success'
+    else status = 'success--light'
     value = 'O'
   } else if (state < 0) {
-    status = 'danger'
+    if (index % 2) status = 'danger'
+    else status = 'danger--light'
     value = 'X'
   } else {
-    status = 'info'
+    if (index % 2) status = 'dark'
+    else status = 'light'
     value = 'N'
   }
 
