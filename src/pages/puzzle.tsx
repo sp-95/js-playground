@@ -13,18 +13,26 @@ function PuzzleButton({
   updateBoard: (arg0: number) => void
 }): React.ReactElement {
   let status
-  if (state > 0) status = 'success'
-  else if (state < 0) status = 'danger'
-  else status = 'info'
+  let value
+  if (state > 0) {
+    status = 'success'
+    value = 'O'
+  } else if (state < 0) {
+    status = 'danger'
+    value = 'X'
+  } else {
+    status = 'info'
+    value = 'N'
+  }
 
   return (
     <button
       type="button"
-      className={`btn ${status} focus:ring-0 disabled:cursor-not-allowed`}
+      className={`btn ${status} py-0 px-1 sm:py-1.5 sm:px-3 focus:ring-0 disabled:cursor-not-allowed`}
       onClick={() => updateBoard(index)}
       disabled={state < 0}
     >
-      {index}
+      <p className={`${value === 'N' ? 'invisible' : 'visible'}`}>{value}</p>
     </button>
   )
 }
@@ -104,8 +112,8 @@ export default function HomePage(): React.ReactElement {
   // grid-cols-9 grid-cols-10 grid-cols-11 grid-cols-12
   return (
     <Layout title="Checker board puzzle" description="Run checker board puzzle">
-      <div className="flex justify-between m-10">
-        <div className="space-y-2">
+      <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between m-10">
+        <div className="space-y-2 hidden sm:block">
           <h1>High Scores</h1>
           {Object.entries(highScores).map(
             ([k, v]) =>
@@ -128,13 +136,15 @@ export default function HomePage(): React.ReactElement {
               checker is in the same row, column or diagonal
             </p>
 
-            <div className="flex justify-center w-full">
+            <div className="flex items-center justify-between sm:justify-center w-full">
               <input
                 type="number"
                 className="form-input w-16"
                 value={boardSize}
                 onChange={(e) => handleSizeChange(e)}
               />
+
+              <p className="font-bold sm:hidden">Moves: {moves}</p>
             </div>
           </div>
 
@@ -158,21 +168,37 @@ export default function HomePage(): React.ReactElement {
               Reset
             </button>
 
-            <h2
-              className={`text-2xl font-semibold text-success-700 ${
+            <div
+              className={`flex flex-col sm:flex-row text-success-700 text-center sm:space-x-2 ${
                 boardState.filter((n) => n === 1).length === boardSize
                   ? 'visible'
                   : 'invisible'
               }`}
             >
-              Congratulations!!! You Win!
-            </h2>
+              <h2>Congratulations!!!</h2>
+              <h2>You Win!</h2>
+            </div>
           </div>
         </div>
 
-        <div className="text-center">
+        <div className="text-center hidden sm:block">
           <h1>Moves</h1>
           <h1>{moves}</h1>
+        </div>
+
+        <div className="mt-4 space-y-2 sm:hidden">
+          <h1>High Scores</h1>
+          {Object.entries(highScores).map(
+            ([k, v]) =>
+              v > 0 && (
+                <div key={uuid4()} className="flex justify-evenly">
+                  <h2>
+                    {k}x{k}
+                  </h2>
+                  <h2>{v}</h2>
+                </div>
+              )
+          )}
         </div>
       </div>
     </Layout>
