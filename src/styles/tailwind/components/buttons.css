@@ -8,7 +8,7 @@
 
     &:focus {
       @apply outline-none;
-      @apply ring-4 ring-opacity-50;
+      @apply ring-2 ring-opacity-50;
     }
 
     &.success {

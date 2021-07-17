@@ -1,0 +1,13 @@
+@layer components {
+  .form-input {
+    @apply flex items-center justify-center;
+    @apply h-9 lg:h-11 px-2 space-x-2;
+    @apply bg-white;
+    @apply text-gray-500;
+    @apply border border-gray-300;
+    @apply rounded-md;
+    @apply outline-none;
+    @apply focus-within:ring-1 focus-within:ring-blue-500;
+    @apply whitespace-nowrap;
+  }
+}
