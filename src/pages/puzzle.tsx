@@ -154,7 +154,7 @@ export default function PuzzlePage(): React.ReactElement {
             <div className="flex items-center justify-between sm:justify-center w-full">
               <input
                 type="number"
-                className="form-input w-16"
+                className="form-input--number w-16"
                 value={boardSize}
                 onChange={(e) => handleSizeChange(e)}
               />

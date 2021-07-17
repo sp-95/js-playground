@@ -11,4 +11,13 @@
     @apply focus-within:ring-1 focus-within:ring-blue-500;
     @apply whitespace-nowrap;
   }
+
+  .form-input--number {
+    @apply form-input;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      opacity: 1;
+    }
+  }
 }
