@@ -35,6 +35,9 @@ export default function HomePage(): React.ReactElement {
     new Array(boardSize * boardSize).fill(0)
   )
   const [moves, setMoves] = React.useState(0)
+  const [highScores, setHighScores] = React.useState(
+    Object.fromEntries([...Array(12).keys()].splice(3).map((i) => [i + 1, -1]))
+  )
 
   const handleReset = (value: number = boardSize) => {
     setBoardSize(value)
@@ -76,6 +79,14 @@ export default function HomePage(): React.ReactElement {
 
     setBoardState(temp)
     setMoves(moves + 1)
+
+    if (boardState.filter((n) => n === 1).length === boardSize) {
+      const currentScore = highScores[boardSize]
+      if (currentScore < 0 || moves + 1 < currentScore) {
+        highScores[boardSize] = moves + 1
+        setHighScores(highScores)
+      }
+    }
   }
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +105,20 @@ export default function HomePage(): React.ReactElement {
   return (
     <Layout title="Checker board puzzle" description="Run checker board puzzle">
       <div className="flex justify-between m-10">
-        <h1>High Score</h1>
+        <div className="space-y-2">
+          <h1>High Scores</h1>
+          {Object.entries(highScores).map(
+            ([k, v]) =>
+              v > 0 && (
+                <div key={uuid4()} className="flex justify-evenly">
+                  <h2>
+                    {k}x{k}
+                  </h2>
+                  <h2>{v}</h2>
+                </div>
+              )
+          )}
+        </div>
 
         <div className="flex flex-col items-center">
           <div className="max-w-sm space-y-2">
