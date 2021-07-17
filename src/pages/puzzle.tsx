@@ -3,27 +3,35 @@ import { sendDangerNotification } from '@components/notifications/Notification'
 import React from 'react'
 import { v4 as uuid4 } from 'uuid'
 
-function PuzzleButton({
-  index,
-  state,
-  updateBoard,
-}: {
+export interface PuzzleButtonProps {
   index: number
-  state: number
+  dark?: boolean
+  state?: number
+  disabled?: boolean
   updateBoard: (arg0: number) => void
-}): React.ReactElement {
+}
+
+export function PuzzleButton(props: PuzzleButtonProps): React.ReactElement {
+  const {
+    index,
+    dark = false,
+    state = 0,
+    disabled = false,
+    updateBoard,
+  } = props
+
   let status
   let value
   if (state > 0) {
-    if (index % 2) status = 'success'
+    if (dark) status = 'success'
     else status = 'success--light'
     value = 'O'
   } else if (state < 0) {
-    if (index % 2) status = 'danger'
+    if (dark) status = 'danger'
     else status = 'danger--light'
     value = 'X'
   } else {
-    if (index % 2) status = 'dark'
+    if (dark) status = 'dark'
     else status = 'light'
     value = 'N'
   }
@@ -31,16 +39,16 @@ function PuzzleButton({
   return (
     <button
       type="button"
-      className={`btn ${status} py-0 px-1 sm:py-1.5 sm:px-3 focus:ring-0 disabled:cursor-not-allowed`}
+      className={`btn ${status} py-0 px-1 sm:py-1.5 sm:px-3 focus:ring-2 disabled:cursor-not-allowed`}
       onClick={() => updateBoard(index)}
-      disabled={state < 0}
+      disabled={disabled || state < 0}
     >
       <p className={`${value === 'N' ? 'invisible' : 'visible'}`}>{value}</p>
     </button>
   )
 }
 
-export default function HomePage(): React.ReactElement {
+export default function PuzzlePage(): React.ReactElement {
   const [boardSize, setBoardSize] = React.useState(5)
   const [boardState, setBoardState] = React.useState<number[]>(
     new Array(boardSize * boardSize).fill(0)
@@ -49,11 +57,13 @@ export default function HomePage(): React.ReactElement {
   const [highScores, setHighScores] = React.useState(
     Object.fromEntries([...Array(12).keys()].splice(3).map((i) => [i + 1, -1]))
   )
+  const [gameComplete, setGameComplete] = React.useState(false)
 
   const handleReset = (value: number = boardSize) => {
     setBoardSize(value)
     setBoardState(new Array(value * value).fill(0))
     setMoves(0)
+    setGameComplete(false)
   }
 
   React.useEffect(() => {
@@ -92,6 +102,8 @@ export default function HomePage(): React.ReactElement {
     setMoves(moves + 1)
 
     if (boardState.filter((n) => n === 1).length === boardSize) {
+      setGameComplete(true)
+
       const currentScore = highScores[boardSize]
       if (currentScore < 0 || moves + 1 < currentScore) {
         highScores[boardSize] = moves + 1
@@ -157,7 +169,11 @@ export default function HomePage(): React.ReactElement {
                 <PuzzleButton
                   key={uuid4()}
                   index={index}
+                  dark={Boolean(
+                    (Math.trunc(index / boardSize) + (index % boardSize)) % 2
+                  )}
                   state={currentState}
+                  disabled={gameComplete}
                   updateBoard={handleUpdate}
                 />
               ))}
@@ -173,9 +189,7 @@ export default function HomePage(): React.ReactElement {
 
             <div
               className={`flex flex-col sm:flex-row text-success-700 text-center sm:space-x-2 ${
-                boardState.filter((n) => n === 1).length === boardSize
-                  ? 'visible'
-                  : 'invisible'
+                gameComplete ? 'visible' : 'invisible'
               }`}
             >
               <h2>Congratulations!!!</h2>
