@@ -1,6 +1,7 @@
 import Layout from '@components/layout'
 import { sendDangerNotification } from '@components/notifications/Notification'
 import React from 'react'
+import { v4 as uuid4 } from 'uuid'
 
 function PuzzleButton({
   index,
@@ -9,7 +10,7 @@ function PuzzleButton({
 }: {
   index: number
   state: number
-  updateBoard: (number) => void
+  updateBoard: (arg0: number) => void
 }): React.ReactElement {
   let status
   if (state > 0) status = 'success'
@@ -109,6 +110,7 @@ export default function HomePage(): React.ReactElement {
         <div className={`grid grid-cols-${boardSize} gap-1`}>
           {boardState.map((currentState, index) => (
             <PuzzleButton
+              key={uuid4()}
               index={index}
               state={currentState}
               updateBoard={handleUpdate}
