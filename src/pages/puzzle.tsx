@@ -34,10 +34,12 @@ export default function HomePage(): React.ReactElement {
   const [boardState, setBoardState] = React.useState<number[]>(
     new Array(boardSize * boardSize).fill(0)
   )
+  const [moves, setMoves] = React.useState(0)
 
   const handleReset = (value: number = boardSize) => {
     setBoardSize(value)
     setBoardState(new Array(value * value).fill(0))
+    setMoves(0)
   }
 
   React.useEffect(() => {
@@ -73,6 +75,7 @@ export default function HomePage(): React.ReactElement {
     })
 
     setBoardState(temp)
+    setMoves(moves + 1)
   }
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,51 +93,63 @@ export default function HomePage(): React.ReactElement {
   // grid-cols-9 grid-cols-10 grid-cols-11 grid-cols-12
   return (
     <Layout title="Checker board puzzle" description="Run checker board puzzle">
-      <div className="m-auto my-10 max-w-sm space-y-2">
-        <h1 className="text-4xl font-bold">Checker board puzzle</h1>
-        <p className="text-justify">
-          The goal of the puzzle is to place the checkers such that no checker
-          is in the same row, column or diagonal
-        </p>
-        <div className="flex justify-center w-full">
-          <input
-            type="number"
-            className="form-input w-20"
-            value={boardSize}
-            onChange={(e) => handleSizeChange(e)}
-          />
+      <div className="flex justify-between m-10">
+        <h1>High Score</h1>
+
+        <div className="flex flex-col items-center">
+          <div className="max-w-sm space-y-2">
+            <h1>Checker board puzzle</h1>
+            <p className="text-justify">
+              The goal of the puzzle is to place the checkers such that no
+              checker is in the same row, column or diagonal
+            </p>
+
+            <div className="flex justify-center w-full">
+              <input
+                type="number"
+                className="form-input w-16"
+                value={boardSize}
+                onChange={(e) => handleSizeChange(e)}
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center pt-10 space-y-5">
+            <div className={`grid grid-cols-${boardSize} gap-1`}>
+              {boardState.map((currentState, index) => (
+                <PuzzleButton
+                  key={uuid4()}
+                  index={index}
+                  state={currentState}
+                  updateBoard={handleUpdate}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="btn danger"
+              onClick={() => handleReset()}
+            >
+              Reset
+            </button>
+
+            <h2
+              className={`text-2xl font-semibold text-success-700 ${
+                boardState.filter((n) => n === 1).length === boardSize
+                  ? 'visible'
+                  : 'invisible'
+              }`}
+            >
+              Congratulations!!! You Win!
+            </h2>
+          </div>
         </div>
-      </div>
 
-      <div className="flex flex-col items-center space-y-5">
-        <div className={`grid grid-cols-${boardSize} gap-1`}>
-          {boardState.map((currentState, index) => (
-            <PuzzleButton
-              key={uuid4()}
-              index={index}
-              state={currentState}
-              updateBoard={handleUpdate}
-            />
-          ))}
+        <div className="text-center">
+          <h1>Moves</h1>
+          <h1>{moves}</h1>
         </div>
-
-        <button
-          type="button"
-          className="btn danger"
-          onClick={() => handleReset()}
-        >
-          Reset
-        </button>
-
-        <h2
-          className={`text-2xl font-semibold text-success-700 ${
-            boardState.filter((n) => n === 1).length === boardSize
-              ? 'visible'
-              : 'invisible'
-          }`}
-        >
-          Congratulations!!! You completed the game
-        </h2>
       </div>
     </Layout>
   )

@@ -2,8 +2,9 @@
   .form-input {
     @apply flex items-center justify-center;
     @apply h-9 lg:h-11 px-2 space-x-2;
-    @apply bg-white;
+    @apply bg-gray-200;
     @apply text-gray-500;
+    @apply text-center;
     @apply border border-gray-300;
     @apply rounded-md;
     @apply outline-none;
